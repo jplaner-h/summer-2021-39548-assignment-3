@@ -9,6 +9,7 @@ function addR() {
         document.getElementById("grid").appendChild(row);
         let box = document.createElement("td");
         box.classList.add("box");
+        box.style.backgroundColor = "white";
         document.getElementsByTagName("tr")[numRows].appendChild(box);
 
         numRows++;
@@ -22,6 +23,7 @@ function addR() {
         document.getElementById("grid").appendChild(row);
         let box = document.createElement("td");
         box.classList.add("box");
+        box.style.backgroundColor = "white";
         document.getElementsByTagName("tr")[numRows].appendChild(box);
     }
 
@@ -35,6 +37,7 @@ function addC() {
         document.getElementById("grid").appendChild(row);
         let box = document.createElement("td");
         box.classList.add("box");
+        box.style.backgroundColor = "white";
         document.getElementsByTagName("tr")[numRows].appendChild(box);
 
         numRows++;
@@ -46,6 +49,7 @@ function addC() {
     for(let i = 0; i < numRows; i++) {
         let box = document.createElement("td");
         box.classList.add("box");
+        box.style.backgroundColor = "white";
         document.getElementsByTagName("tr")[i].appendChild(box);
     }
 
@@ -90,14 +94,35 @@ function selected(){
     console.log(colorSelected);
 }
 
+function fillSingle() {
+    
+}
+
 function fill(){
-    alert("Clicked Fill All")
+    for(let i = 0; i < numRows; i++) {
+        for(let j = 0; j < numCols; j++) {
+            let curBox = document.getElementsByTagName("tr")[i].getElementsByTagName("td")[j];
+            curBox.style.backgroundColor = colorSelected;
+        }
+    }
 }
 
 function clearAll(){
-    alert("Clicked Clear All")
+    for(let i = 0; i < numRows; i++) {
+        for(let j = 0; j < numCols; j++) {
+            let curBox = document.getElementsByTagName("tr")[i].getElementsByTagName("td")[j];
+            curBox.style.backgroundColor = "white";
+        }
+    }
 }
 
 function fillU(){
-    alert("Clicked Fill All Uncolored")
+    for(let i = 0; i < numRows; i++) {
+        for(let j = 0; j < numCols; j++) {
+            let curBox = document.getElementsByTagName("tr")[i].getElementsByTagName("td")[j];
+            if(curBox.style.backgroundColor === "white") {
+                curBox.style.backgroundColor = colorSelected;
+            }
+        }
+    }
 }
