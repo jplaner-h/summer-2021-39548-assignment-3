@@ -4,21 +4,86 @@ let colorSelected;
 
 //Adds a row
 function addR() {
-    alert("Clicked Add Row")
+    if(numRows === 0) {
+        let row = document.createElement("tr");
+        document.getElementById("grid").appendChild(row);
+        let box = document.createElement("td");
+        box.classList.add("box");
+        document.getElementsByTagName("tr")[numRows].appendChild(box);
+
+        numRows++;
+        numCols++;
+
+        return;
+    }
+
+    for(let i = 0; i < numCols; i++) {
+        let row = document.createElement("tr");
+        document.getElementById("grid").appendChild(row);
+        let box = document.createElement("td");
+        box.classList.add("box");
+        document.getElementsByTagName("tr")[numRows].appendChild(box);
+    }
+
+    numRows++;
 }
+
 //Adds a column
 function addC() {
-    alert("Clicked Add Col")
+    if(numCols === 0) {
+        let row = document.createElement("tr");
+        document.getElementById("grid").appendChild(row);
+        let box = document.createElement("td");
+        box.classList.add("box");
+        document.getElementsByTagName("tr")[numRows].appendChild(box);
+
+        numRows++;
+        numCols++;
+
+        return;
+    }
+
+    for(let i = 0; i < numRows; i++) {
+        let box = document.createElement("td");
+        box.classList.add("box");
+        document.getElementsByTagName("tr")[i].appendChild(box);
+    }
+
+    numCols++;
 }
 
 //Removes a row
 function removeR() {
-    alert("Clicked Remove Row")
+    if(numRows === 0) {
+        return;
+    } 
+
+    document.getElementsByTagName("tr")[numRows-1].remove();
+
+    numRows--;
+
+    if(numRows === 0) {
+        numCols = 0;
+    }
 }
+
 //Remove a column
 function removeC() {
-    alert("Clicked Remove Col")
+    if(numCols === 0) {
+        return;
+    }
+
+    for(let i = 0; i < numRows; i++) {
+        document.getElementsByTagName("tr")[i].lastChild.remove();
+    }
+
+    numCols--;
+
+    if(numCols === 0) {
+        numRows = 0;
+    }
 }
+
 //sets global var for selected color
 function selected(){
     colorSelected = document.getElementById("selectedID").value;
